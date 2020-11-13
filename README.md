@@ -4,4 +4,5 @@
 - clock
 - LRU
 - OPT
+- Rand
 
