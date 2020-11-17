@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# declare -a trace=( "tr-simpleloop.ref" "tr-matmul.ref" "tr-blocked.reyf" "tr-fourth.ref")
+declare -a trace=("tr-fourth.ref")
+declare -a alg=( "rand" "fifo" "lru" "clock" "opt" )
+declare -a memsize=( "50" "100" "150" "200" )
+
+for t in "${trace[@]}"
+do
+    for a in "${alg[@]}"
+    do
+        for m in "${memsize[@]}"
+        do
+            ./sim -f traceprogs/${t} -m ${m} -s 3000 -a ${a} | tail -7l > ${t}-${a}-${m}.txt
+        done
+    done
+done
